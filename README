@@ -28,21 +28,3 @@ El código realiza las siguientes operaciones para manejar los valores faltantes
    ```python
    missing_values = df_titanic.isnull().sum()
 
-df_titanic["pclass"] = df_titanic["pclass"].fillna(2)
-
-df_titanic["sex"] = df_titanic["sex"].map({"male": "male", "female": "female"})
-df_titanic["sex"] = df_titanic["sex"].fillna("Unknown")
-
-mean_age = df_titanic["age"].mean()
-df_titanic["age"] = df_titanic["age"].fillna(mean_age)
-
-df_titanic["embarked"] = df_titanic["embarked"].fillna("S")
-
-python tu_script.py
-
-
-### Notas sobre el archivo `README.md`:
-
-- **Estructura clara**: El archivo está estructurado en secciones que facilitan la lectura y comprensión.
-- **Código comentado**: Se incluyen fragmentos de código para ilustrar cada paso del proceso.
-- **Instrucciones de ejecución**: Se proporciona una guía sobre cómo ejecutar el código, lo que es útil para otros usuarios que deseen replicar el análisis.
