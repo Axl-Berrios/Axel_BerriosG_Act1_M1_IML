@@ -1,0 +1,45 @@
+import pandas as pd
+
+# Importamos libreria pandas para procesar los datos mencionado en la actividad
+df_titanic = pd.read_excel('/content/titanic_M1.xlsx') df_titanic
+
+# a) Describir la cantidad de valores faltantes para cada variable
+missing_values = df_titanic.isnull().sum() print("Valores faltantes:") print(missing_values)
+
+# En esta parte, se calcula la cantidad de datos faltantes en cada columna del df_titanic utilizando el codigo isnull().sum().
+# La variable missing_Values guarda esa informacion y luego se imprime en pantalla.
+# b) Completar los valores NA en la columna Pclass con la clase 2
+df_titanic["pclass"] = df_titanic["pclass"].fillna(2)
+
+# En esta parte se completan los valores faltantes en la columna "pclass" con el valor 2 utilizando el metodo fillna
+df_titanic["pclass"].isnull().sum()
+
+# Comprobamos que ya no existan datos nulos
+# c) Imputar los datos de la columna "sex" con "male" y "female" solamente
+df_titanic["sex"] = df_titanic["sex"].map({"male":"male", "female":"female"})
+
+df_titanic["sex"]
+
+# En esta línea, se mapean los datos de la columna “sex” con el diccionario {"male": "male", "female": "female"}.
+# Esto se hace para imputar los valores faltantes en la columna “sex” utilizando el mismo valor (“male” o “female”).
+df_titanic["sex"] = df_titanic["sex"].fillna("Unknown")
+
+# Reemplazamos el valor NaN por "Unknown" ya que se no logra identificar si es masculino o femenino
+df_titanic["sex"]
+
+# d)Rellenar los valores faltantes en la columna "age" con el promedio de edad
+mean_age = df_titanic["age"].mean() df_titanic["age"] = df_titanic["age"].fillna(mean_age)
+
+# Aquí se calcula el promedio de edad en la columna “age” utilizando el método mean().
+# Luego, se imputan los valores faltantes en la columna “age” con el valor del promedio utilizando el método fillna(mean_age).
+df_titanic.head()
+
+# e) Asignar el valor "S" a los datos faltantes en la columna "Embarked"
+df_titanic["embarked"] = df_titanic["embarked"].fillna("S")
+
+# En esta parte, se rellenan los valores faltantes en la columna “Embarked” con el valor “S” utilizando el método fillna("S").
+# para verificar si el codigo funciono correctamente, ejecutamos el siguiente codigo:
+df_titanic["embarked"].isnull().sum()
+
+## si el codigo imprime 0, siginifica que no hay valores nulos en la columna "embarked", despues de reemplazar los valores faltantes con "S"
+
